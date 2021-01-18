@@ -1,0 +1,104 @@
+{
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	},"Express middleware" : {
+		"prefix": "GETem5",
+		"body": [
+			"exports.$1Mw = (req, res, next) => {",
+			"    $1()",
+			"        .then(Res => {",
+			"            res.status(200).json(Res)",
+			"        })",
+			"        .catch(err => {",
+			"            res.status(err.status || 500).json(err.type ? err : {",
+			"                message: err.message",
+			"            })",
+			"        })",
+			"}"
+		],
+		"description": "GET middleware for express in node ES5"
+	},
+	"Index File": {
+		"prefix": "index.js",
+		"body": [
+			"import $1 from '$2';",
+			" ",
+			"export {",
+			"    $1",
+			"};",
+			" "
+		],
+		"description": "Default index file"
+	},
+	"Default React Redux Container": {
+		"prefix": "recon",
+		"body": [
+			"// @flow",
+			" ",
+			"import * as React from 'react';",
+			"import { connect } from 'react-redux';",
+			"import { withRouter } from 'react-router';",
+			"import { $1 } from '$2' ",
+			" ",
+			"class $3 extends React.Component {",
+			"    render() {",
+			"        return (",
+			"            <div>You Container body</div>",
+			"        )",
+			"    }",
+			"}",
+			" ",
+			"const mapStateToProps = state => ({})",
+			" ",
+			"export default withRouter(connect(mapStateToProps, { $1 })($3))",
+			" "
+		],
+		"description": "Redux template"
+	},
+	"Default JEST test template": {
+		"prefix": "jesty",
+		"body": [
+			"import React from 'react';",
+			"import enzyme, { mount } from 'enzyme';",
+			"import toJSON from 'enzyme-to-json';",
+			"import adapter from 'enzyme-adapter-react-16';",
+			"import $1 from '$2';",
+			" ",
+			"enzyme.configure({adapter: new adapter()});",
+			" ",
+			"describe('#$3', () => { beforeEach(() => {}) })"
+		],
+		"description": "Test template"
+	},
+	"Default Action": {
+		"prefix": "reaction",
+		"body": [
+			"export const $1 = ($2) => async (dispatch) => {",
+			"	dispatch({",
+			"		type: $3",
+			"	});"
+			" "
+			"$4($5)"
+			"	.then((res) => {",
+			"		dispatch({",
+			"			type: $6,",
+			"			payload: res$7,",
+			"			$8",
+			"		});",
+			"})",
+			".catch((err) => {",
+			"	dispatch({",
+			"		type: TYPES.ERROR,",
+			"		payload: err.response.data",
+			"	});",
+			"});"
+			"}"
+		],
+		"description": "Generate redux action"
+	}
+}
